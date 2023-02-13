@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: ecommerce
+    volumes:
+      - pg:/var/lib/postgresql/data
+  pdAdmin:
+    image: dpage/pgadmin4:6.17
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=123456
+      - PGADMIN_DEFAULT_EMAIL=superman@google.com
+volumes:
+  pg:
+
+    # docker compose --env-file .env up
+    # docker exec -it <id> sh
