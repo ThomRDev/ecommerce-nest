@@ -4,11 +4,14 @@ services:
     image: postgres:14.3
     restart: always
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:${DB_PORT}"
     environment:
-      POSTGRES_USER: pg
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: ecommerce
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      # POSTGRES_USER: pg
+      # POSTGRES_PASSWORD: 123456
+      # POSTGRES_DB: ecommerce
     volumes:
       - pg:/var/lib/postgresql/data
   pdAdmin:
@@ -23,5 +26,5 @@ services:
 volumes:
   pg:
 
-    # docker compose --env-file .env up
+    # docker compose --env-file ./.env up
     # docker exec -it <id> sh
